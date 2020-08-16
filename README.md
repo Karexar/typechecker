@@ -14,7 +14,7 @@ from typecheck import *
 
 ## Examples
 
-Here are some example of how to use the decorators. In a python interpreter, run:
+Here are some examples of how to use the decorators. In a python interpreter, run:
 ```python
 from example import *
 ```
