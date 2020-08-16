@@ -4,7 +4,17 @@ The *typecheck* module provides a nice way to check for parameter and return val
 
 Currently, keyword arguments are not supported. It will work if there is only one, but if there are may, and they are not given in the correct order during the call, it will fail. It is advised not to test the types of keyword arguments if there are more than one in the function definition.
 
-Here is some example of how to use the decorators. In a python interpreter, run:
+## Usage
+
+```python
+from typecheck import *
+
+# use accepts and returns decorator as described in the examples...
+```
+
+## Examples
+
+Here are some example of how to use the decorators. In a python interpreter, run:
 ```python
 from example import *
 ```
