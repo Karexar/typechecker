@@ -16,7 +16,7 @@ Here are some examples of how to use the decorators. In a python interpreter, ru
 ```python
 from example import *
 ```
-and try calling the foo functions with different parameters
+to import the foo functions, and try calling them with different parameters
 
 ### Example 1
 
