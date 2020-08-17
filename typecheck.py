@@ -294,7 +294,7 @@ def type_check(f_name, param_idx, arg, typ):
         args_to_check = new_args_to_check
         surroundings = new_surroundings
 
-def accepts(*types):
+def accepts(*types, **kwargs_types):
     """Decorator to check the parameter types
 
     Parameters:
@@ -307,18 +307,24 @@ def accepts(*types):
     """
     def decorator(f):
         @functools.wraps(f)
-        def wrapper(*args):
-            # Since keywords arguments are not supported yet, we cannot check
-            # the length of the types agains the length of parameters.
-            #if len(args) != len(types):
-            #    raise ValueError("Mismatch count of args/types ("
-            #                     + str(len(args)) + "/"
-            #                     + str(len(types)) + ")")
-
-            # Check the type for each parameter
+        def wrapper(*args, **kwargs):
+            if len(args) != len(types):
+                raise ValueError("Mismatch count of args/types ("
+                                 + str(len(args)) + "/"
+                                 + str(len(types)) + ")")
+            if len(kwargs) > len(kwargs_types):
+                raise ValueError("More kwargs given than types specified")
+            # Check the type for each argument
             for i in range(len(args)):
                 if types[i] != Any:
                     type_check(f.__name__, i, args[i], types[i])
+            # Check the type for each keyword argument
+            for i, v in enumerate(kwargs.items()):
+                if v[0] not in kwargs_types:
+                    raise ValueError(f"Type not specified for kwargs '{v[0]}'")
+                expected_type = kwargs_types[v[0]]
+                if expected_type != Any:
+                    type_check(f.__name__, v[0], v[1], expected_type)
             return f(*args)
         return wrapper
     return decorator
@@ -376,6 +382,8 @@ def error_msg(fname, param_idx, expected, actual, surrounding):
     intro = "Type error on return value of method '" + fname + "' :\n"
     # If the type check is on the return type
     if param_idx != -1:
+        if isinstance(param_idx, str):
+            param_idx = "'" + param_idx + "'"
         intro = "Type error on parameter " + str(param_idx) \
                 + " of method '" + fname  + "' :\n"
     msg = intro + "             Expected :  " + expected_str + "\n" \

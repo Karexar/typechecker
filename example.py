@@ -51,3 +51,8 @@ def foo7(arg):
 @accepts(Union[int, list])
 def foo9(arg):
     return "ok"
+
+# Example 10
+@accepts(int, x=int, y=int)
+def foo10(arg, x=1, y=1):
+    return "ok"

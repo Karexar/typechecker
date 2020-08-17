@@ -1,8 +1,6 @@
 # Python type-checker
 
-The *typecheck* module provides a nice way to check for parameter and return value types at runtime by using decorators. One benefit is that we do not need to test for types in test functions anymore, because the decorators already handle this.
-
-Currently, keyword arguments are not supported. It will work if there is only one, but if there are may, and they are not given in the correct order during the call, it will fail. It is advised not to test the types of keyword arguments if there are more than one in the function definition.
+The *typecheck* module provides a nice way to check for parameter and return value types at runtime using decorators. One benefit is that we do not need to test for types in test functions anymore, because the decorators already handle this.
 
 ## Usage
 
@@ -184,6 +182,26 @@ def foo9(arg):
 >>> foo9([1])
 'ok'
 >>> foo9(1.5)
+TypeError: Type error on parameter 0 of method 'foo9' :
+            Expected :  union[int, list]
+            Have :      union[float]
+```
+
+### Example 10
+
+Keyword arguments are supported. We need to specify the argument names and the types, in case the kwargs are given in random order.
+
+```python
+@accepts(int, x=int, y=int)
+def foo10(arg, x=1, y=1):
+    return "ok"
+```
+```zsh
+>>> foo10(1, y=1)
+'ok'
+>>> foo10(1, y=1, x=1)
+'ok'
+>>> foo10(1, y=1, x=1.5)
 TypeError: Type error on parameter 0 of method 'foo9' :
             Expected :  union[int, list]
             Have :      union[float]
