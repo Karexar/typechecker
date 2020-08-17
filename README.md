@@ -1,6 +1,6 @@
 # Python type-checker
 
-The *typecheck* module provides a nice way to check for parameter and return value types at runtime using decorators. One benefit is that we do not need to test for types in test functions anymore, because the decorators already handle this.
+The *typecheck* module provides a nice way to check for parameter and return value types at runtime using decorators. One benefit is that we do not need to test for types in test functions anymore, because the decorators already handle this. Right now it supports List, Tuple, Dict, Set, Any, Union, from the typing module. It also support any native type or class.
 
 ## Usage
 
