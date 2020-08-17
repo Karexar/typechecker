@@ -1,4 +1,4 @@
-from typecheck import *
+from typechecker.typecheck import *
 
 class Foo:
     def __init__(self):

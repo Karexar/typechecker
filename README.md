@@ -2,21 +2,28 @@
 
 The *typecheck* module provides a nice way to check for parameter and return value types at runtime using decorators. One benefit is that we do not need to test for types in test functions anymore, because the decorators already handle this. Right now it supports List, Tuple, Dict, Set, Any, Union, from the typing module. It also support any native type or class.
 
+## Installation
+
+Clone this repository, *cd* to it and install using
+```zsh
+pip install .
+```
+
 ## Usage
 
 ```python
-from typecheck import *
+from typechecker.typecheck import *
 
 # use accepts and returns decorator as described in the examples...
 ```
 
 ## Examples
 
-Here are some examples of how to use the decorators. In a python interpreter, run:
+Here are some examples of how to use the decorators. Run the following in a python interpreter :
 ```python
-from example import *
+from typechecker.example import *
 ```
-to import the foo functions, and try calling them with different parameters
+This imports the foo functions. Now try calling them with different parameters.
 
 ### Example 1
 

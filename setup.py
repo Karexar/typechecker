@@ -10,12 +10,13 @@ setuptools.setup(
     long_description="Uses decorators on functions and method to check the arguments types and return type at runtime. ",
     url="https://github.com/Karexar/typechecker",
 
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=("tests",)),
+    #scripts=["typecheck.py"],
 
     classifiers=(
         "Programming Language :: Python :: 3.7",
         "License :: Creative Commons (CC BY-NC 4.0)",
         "Operating System :: OS Independent",
     ),
-    install_requires=[]
+    #install_requires=[]
 )
