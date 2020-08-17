@@ -202,7 +202,7 @@ def foo10(arg, x=1, y=1):
 >>> foo10(1, y=1, x=1)
 'ok'
 >>> foo10(1, y=1, x=1.5)
-TypeError: Type error on parameter 0 of method 'foo9' :
-            Expected :  union[int, list]
-            Have :      union[float]
+TypeError: Type error on parameter 'x' of method 'foo10' :
+             Expected :  int
+             Have :      float
 ```
