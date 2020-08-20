@@ -344,8 +344,8 @@ def returns(typ):
     """
     def decorator(f):
         @functools.wraps(f)
-        def wrapper(*args):
-            result = f(*args)
+        def wrapper(*args, **kwargs):
+            result = f(*args, **kwargs)
             if typ is None and result is not None:
                 raise TypeError("Type error on return value of method '"
                                 + f.__name__ + "' :\n"
